@@ -1,0 +1,19 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="col-md-6 mx-auto">
+    <h1>Login here</h1>
+    <form action="/login" method="post">
+        <div class="mb3">
+            <label class="form-label" for="username">username</label>
+            <input class="form-control" type="text" name="username" id="username">
+        </div>
+
+        <div class="mb3">
+            <label class="form-label" for="password">password</label>
+            <input class="form-control" type="text" name="password" id="password">
+        </div>
+        <button type="submit" class="btn btn-success btn-small">SignUp</button>
+        <p class="fw-light mt-2">dont have account <a href="/register">SignUp</a></p>
+    </form>
+
+</div>

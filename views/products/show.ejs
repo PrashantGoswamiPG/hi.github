@@ -1,0 +1,73 @@
+<% layout('layouts/boilerplate')%>
+
+<%- include('../partials/navbar')%>
+<%- include('../partials/flash')%>
+
+<div class="mt-3 ">
+  <div class="show">
+    <% if(msg && msg.length) {%>
+    <div class="alert alert-info" role="alert">
+      <%=msg %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>     
+    </div>
+      <%}%>
+    </div>
+      <div class="card col-lg-5" style="width: 18rem" >
+          <img src="<%= found.img%>" class="card-img-top" alt="...">
+              <div class="card-body">
+            <h5 class="card-title"><%=found.name%></h5>
+            <p class="card-text"><%=found.about%></p>
+            <a href="#" class="btn btn-primary">Buy</a>
+            <a href="/products/<%=found._id%>/edit" class="btn btn-primary">edit</a>
+            <!-- <a href="/products" class="btn btn-primary">edit</a> -->
+              </div>
+          </div>
+          <div class="col-lg-6">
+            <h1>leave a review</h1>
+            <form action="/products/<%=found._id%>/review" method="post">
+              <div class="rating">
+                <fieldset class="starability-basic">
+                  <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                  <input type="radio" id="first-rate1" name="rating" value="1" />
+                  <label for="first-rate1" title="Terrible">1 star</label>
+                  <input type="radio" id="first-rate2" name="rating" value="2" />
+                  <label for="first-rate2" title="Not good">2 stars</label>
+                  <input type="radio" id="first-rate3" name="rating" value="3" />
+                  <label for="first-rate3" title="Average">3 stars</label>
+                  <input type="radio" id="first-rate4" name="rating" value="4" />
+                  <label for="first-rate4" title="Very good">4 stars</label>
+                  <input type="radio" id="first-rate5" name="rating" value="5" />
+                  <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+              </div>
+              <div class="comment">
+                <label  class="form-label" for="comm">comment</label>
+                <textarea  class="form-control" row="3" name="comment" id="comm"> </textarea> <!-- name same as in schema -->
+                <button class="btn btn-sm btn-success">submit</button>
+              </div>
+              <div class="my-3">
+                <% for (let review of found.reviews){%>
+                  <div class="card">
+                    <div class="card-header">
+                      Rating:<%= review.rating%>
+                      <h3>Rated element name</h3>
+                      <p class="starability-result" data-rating="<%= review.rating%>">
+                        Rated: <%= review.rating%> stars
+                      </p>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text">comment:<%= review.comment%></p>
+                      <a href="#" class="btn btn-primary">delete</a>
+                    </div>
+                    <p>
+                      <% if(review.createdAt) { %>
+                        <%= review.createdAt.toDateString() %>
+                      <% }%>
+                    </p>
+                  </div>
+                <%}%>
+              </div>
+            </form>
+          </div>
+  </div>
+</div>

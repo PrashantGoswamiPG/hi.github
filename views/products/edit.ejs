@@ -1,0 +1,35 @@
+<% layout('layouts/boilerplate')%>
+
+<%- include('../partials/navbar')%>
+<%- include('../partials/flash')%>
+
+<div class="form">
+    <form action="/products/<%=previousdata._id%>?_method=PATCH" method="post">
+        <div class="mb-3">
+            <label for="img" class="form-label">Example label</label>
+            <input type="text" class="form-control" id="img" name="img" placeholder="image url" value="<%=previousdata.img%>">
+          </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Example label</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="name of product" value="<%=previousdata.name%>">
+          </div>
+          <div class="mb-3">
+            <label for="about" class="form-label">Another label</label>
+            <input type="text" class="form-control" id="about" name="about" placeholder="<%=previousdata.about%>" >
+          </div>
+          <button type="submit">submit</button>
+    </form>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>
